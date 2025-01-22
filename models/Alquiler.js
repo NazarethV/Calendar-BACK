@@ -2,12 +2,12 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const Alquiler = sequelize.define('Alquiler', {
-  fecha: { type: DataTypes.DATE, allowNull: false },
-  nombre_inquilino: { type: DataTypes.STRING, allowNull: true },
-  duracion: { type: DataTypes.INTEGER, allowNull: true },
-  senia: { type: DataTypes.DECIMAL(10, 2), allowNull: true },
-  precio: { type: DataTypes.DECIMAL(10, 2), allowNull: true },
-  detalles: { type: DataTypes.TEXT, allowNull: true },
+  tenantName: { type: DataTypes.STRING, allowNull: false }, // nombre_inquilino -> tenantName
+  startDate: { type: DataTypes.DATE, allowNull: false }, // fecha -> startDate
+  endDate: { type: DataTypes.DATE, allowNull: false }, // fecha fin
+  price: { type: DataTypes.DECIMAL(10, 2), allowNull: false }, // precio -> price
+  details: { type: DataTypes.TEXT, allowNull: true }, // detalles
 });
 
 module.exports = Alquiler;
+
