@@ -8,24 +8,24 @@ const Alquiler = sequelize.define('Alquiler', {
   startDate: { 
     type: DataTypes.DATE, 
     allowNull: false,
-    validate: {
-      isDate: true,
-      notEmpty: true,
-    }
+    // validate: {
+    //   isDate: true,
+    //   notEmpty: true,
+    // }
   }, 
  
   endDate: { 
     type: DataTypes.DATE, 
     allowNull: false,
-    validate:{
-      isDate: true,
-      notEmpty: true,
-      isAfterStart(value){
-        if(value <= this.startDate) {
-          throw new Error("La fecha de fin debe ser posterior a la fecha de inicio")
-        }
-      },
-    }
+    // validate:{
+    //   isDate: true,
+    //   notEmpty: true,
+    //   isAfterStart(value){
+    //     if(value <= this.startDate) {
+    //       throw new Error("La fecha de fin debe ser posterior a la fecha de inicio")
+    //     }
+    //   },
+    // }
   }, 
   
   price: { type: DataTypes.DECIMAL(10, 2), allowNull: false }, // precio
