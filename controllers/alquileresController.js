@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const Alquiler = require('../models/Alquiler');
 
 exports.getAlquileres = async (req, res) => {
@@ -31,6 +32,8 @@ exports.createAlquiler = async (req, res) => {
     res.status(500).json({ error: 'Error al crear el alquiler.' });
   }
 };
+
+
 
 exports.updateAlquiler = async (req, res) => {
   try {
