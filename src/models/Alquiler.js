@@ -6,7 +6,8 @@ const Alquiler = sequelize.define('Alquiler', {
   tenantName: { type: DataTypes.STRING, allowNull: false }, // nombre_inquilino
   
   startDate: { 
-    type: DataTypes.DATE, 
+    //type: DataTypes.DATEONLY, //Esto evitará que Sequelize agregue automáticamente una zona horaria.
+    type: DataTypes.DATEONLY, 
     allowNull: false,
     // validate: {
     //   isDate: true,
@@ -15,7 +16,8 @@ const Alquiler = sequelize.define('Alquiler', {
   }, 
  
   endDate: { 
-    type: DataTypes.DATE, 
+    //type: DataTypes.DATEONLY, //Esto evitará que Sequelize agregue automáticamente una zona horaria.
+    type: DataTypes.DATEONLY, 
     allowNull: false,
     // validate:{
     //   isDate: true,
@@ -28,17 +30,40 @@ const Alquiler = sequelize.define('Alquiler', {
     // }
   }, 
   
-  price: { type: DataTypes.DECIMAL(10, 2), allowNull: false }, // precio
+  price: { 
+    type: 
+    DataTypes.DECIMAL(10, 2), 
+    allowNull: false 
+  }, 
   
-  deposit: { type: DataTypes.DECIMAL(10, 2), allowNull: true }, // seña
+  deposit: { 
+    type: 
+    DataTypes.DECIMAL(10, 2), 
+    allowNull: true 
+  }, 
   
-  phoneNumber: { type: DataTypes.STRING, allowNull: true }, // número de celular
+  phoneNumber: { 
+    type: 
+    DataTypes.STRING, 
+    allowNull: true 
+  }, 
   
-  checkInTime: { type: DataTypes.TIME, allowNull: true }, // hora de entrada
+  checkInTime: { 
+    type: 
+    DataTypes.TIME, 
+    allowNull: true 
+  }, 
   
-  checkOutTime: { type: DataTypes.TIME, allowNull: true }, // hora de salida
+  checkOutTime: { 
+    type: DataTypes.TIME, 
+    allowNull: true 
+  }, 
   
-  details: { type: DataTypes.TEXT, allowNull: true }, // detalles
+  details: { 
+    type: 
+    DataTypes.TEXT, 
+    allowNull: true 
+  }, 
 });
 
 module.exports = Alquiler;

@@ -26,9 +26,13 @@ exports.getAlquilerById = async (req, res) => {
 
 exports.createAlquiler = async (req, res) => {
   try {
+    console.log('DATOS RECIBIDOS PARA CREAR ALQUILER: ', req.body);
+
     const nuevoAlquiler = await Alquiler.create(req.body);
     res.status(201).json(nuevoAlquiler);
+
   } catch (error) {
+    console.error('Error al crear el alquiler:', error);
     res.status(500).json({ error: 'Error al crear el alquiler.' });
   }
 };
