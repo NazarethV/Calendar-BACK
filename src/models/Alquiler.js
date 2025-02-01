@@ -6,8 +6,8 @@ const Alquiler = sequelize.define('Alquiler', {
   tenantName: { type: DataTypes.STRING, allowNull: false }, // nombre_inquilino
   
   startDate: { 
-    type: DataTypes.DATEONLY, //Esto evitará que Sequelize agregue automáticamente una zona horaria.
-    //type: DataTypes.DATE, 
+    //type: DataTypes.DATEONLY, //Esto evitará que Sequelize agregue automáticamente una zona horaria.
+    type: DataTypes.DATEONLY, 
     allowNull: false,
     // validate: {
     //   isDate: true,
@@ -16,8 +16,8 @@ const Alquiler = sequelize.define('Alquiler', {
   }, 
  
   endDate: { 
-    type: DataTypes.DATEONLY, //Esto evitará que Sequelize agregue automáticamente una zona horaria.
-    //type: DataTypes.DATE, 
+    //type: DataTypes.DATEONLY, //Esto evitará que Sequelize agregue automáticamente una zona horaria.
+    type: DataTypes.DATE, 
     allowNull: false,
     // validate:{
     //   isDate: true,

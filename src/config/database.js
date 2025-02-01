@@ -16,6 +16,8 @@
 
 // module.exports = sequelize;
 
+
+//ESTE ES EL ÚLTIMO QUE ESTABA: --->
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
