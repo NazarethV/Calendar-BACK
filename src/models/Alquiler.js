@@ -17,7 +17,7 @@ const Alquiler = sequelize.define('Alquiler', {
  
   endDate: { 
     //type: DataTypes.DATEONLY, //Esto evitará que Sequelize agregue automáticamente una zona horaria.
-    type: DataTypes.DATE, 
+    type: DataTypes.DATEONLY, 
     allowNull: false,
     // validate:{
     //   isDate: true,
