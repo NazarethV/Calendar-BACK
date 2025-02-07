@@ -6,28 +6,13 @@ const Alquiler = sequelize.define('Alquiler', {
   tenantName: { type: DataTypes.STRING, allowNull: false }, // nombre_inquilino
   
   startDate: { 
-    //type: DataTypes.DATEONLY, //Esto evitará que Sequelize agregue automáticamente una zona horaria.
     type: DataTypes.DATEONLY, 
     allowNull: false,
-    // validate: {
-    //   isDate: true,
-    //   notEmpty: true,
-    // }
   }, 
  
   endDate: { 
-    //type: DataTypes.DATEONLY, //Esto evitará que Sequelize agregue automáticamente una zona horaria.
     type: DataTypes.DATEONLY, 
     allowNull: false,
-    // validate:{
-    //   isDate: true,
-    //   notEmpty: true,
-    //   isAfterStart(value){
-    //     if(value <= this.startDate) {
-    //       throw new Error("La fecha de fin debe ser posterior a la fecha de inicio")
-    //     }
-    //   },
-    // }
   }, 
   
   price: { 
@@ -64,6 +49,12 @@ const Alquiler = sequelize.define('Alquiler', {
     DataTypes.TEXT, 
     allowNull: true 
   }, 
+
+  //Para relacionar los alquileres con el User dueño
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  }
 });
 
 module.exports = Alquiler;

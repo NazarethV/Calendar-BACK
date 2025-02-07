@@ -7,13 +7,15 @@ const {
   deleteAlquiler,
 } = require('../controllers/alquileresController');
 
+const authenticateJWT = require('../middlewares/auth');
+
 const router = express.Router();
 
-router.get('/', getAlquileres);
-router.get('/:id', getAlquilerById); // Ruta nueva
-router.post('/', createAlquiler);
-router.put('/:id', updateAlquiler);
-router.delete('/:id', deleteAlquiler);
+router.get('/', authenticateJWT, getAlquileres);
+router.get('/:id', authenticateJWT, getAlquilerById); // Ruta nueva
+router.post('/', authenticateJWT, createAlquiler);
+router.put('/:id', authenticateJWT, updateAlquiler);
+router.delete('/:id', authenticateJWT, deleteAlquiler);
 
 module.exports = router;
 
