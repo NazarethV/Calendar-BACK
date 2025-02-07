@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const alquilerRoutes = require('./routes/alquileres');
+const authRoutes = require('./routes/auth');
 const sequelize = require('./config/database');
 
 const app = express();
@@ -10,6 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Rutas
+app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/rentals', alquilerRoutes); // Cambia la ruta base para que coincida con el frontend
 
 // Conectar con la base de datos
