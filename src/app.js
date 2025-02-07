@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const alquilerRoutes = require('./routes/alquileres');
 const authRoutes = require('./routes/auth');
 const sequelize = require('./config/database');
+const User = require('./models/User');
+const Alquiler = require('./models/Alquiler');
 
 const app = express();
 
@@ -13,6 +15,14 @@ app.use(bodyParser.json());
 // Rutas
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/rentals', alquilerRoutes); // Cambia la ruta base para que coincida con el frontend
+
+//DEFINIR LA RELACIÓN ENTRE MODELOS
+// Un usuario tiene muchos alquileres
+User.hasMany(Alquiler, { foreignKey: 'userId' });
+
+// Un alquiler pertenece a un usuario
+Alquiler.belongsTo(User, { foreignKey: 'userId' });
+
 
 // Conectar con la base de datos
 sequelize.sync({ alter: true }).then(() => {
