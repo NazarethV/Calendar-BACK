@@ -52,7 +52,7 @@ exports.createAlquiler = async (req, res) => {
       userId: req.user.id,
     }
 
-    const nuevoAlquiler = await Alquiler.create(req.body);
+    const nuevoAlquiler = await Alquiler.create(data);
     res.status(201).json(nuevoAlquiler);
 
   } catch (error) {
