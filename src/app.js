@@ -12,6 +12,10 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Ruta raíz para confirmar que el backend está activo
+app.get('/', (req, res) => {
+  res.send('Servidor backend en ejecución.');
+});
 // Rutas
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/rentals', alquilerRoutes); // Cambia la ruta base para que coincida con el frontend
