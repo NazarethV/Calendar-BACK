@@ -29,7 +29,7 @@ fs.readdirSync(modelsPath)
     console.log(`Modelo cargado: ${file}`);
     models[model.name] = model;
   });
-
+//
 // Ahora, debes ejecutar las asociaciones después de cargar los modelos
 Object.keys(models).forEach(modelName => {
   if (models[modelName].associate) {
