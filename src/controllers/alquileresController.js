@@ -11,21 +11,6 @@ exports.getAlquileres = async (req, res) => {
   }
 };
 
-// exports.getAlquilerById = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const alquiler = await Alquiler.findByPk(id);
-//     if (alquiler) {
-//       res.status(200).json(alquiler);
-//     } else {
-//       res.status(404).json({ error: 'Alquiler no encontrado.' });
-//     }
-//   } catch (error) {
-//     res.status(500).json({ error: 'Error al obtener el alquiler.' });
-//   }
-// };
-
-
 exports.getAlquilerById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -62,23 +47,6 @@ exports.createAlquiler = async (req, res) => {
 };
 
 
-
-// exports.updateAlquiler = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const [updated] = await Alquiler.update(req.body, { where: { id } });
-//     if (updated) {
-//       const alquilerActualizado = await Alquiler.findByPk(id);
-//       res.status(200).json(alquilerActualizado);
-//     } else {
-//       res.status(404).json({ error: 'Alquiler no encontrado.' });
-//     }
-//   } catch (error) {
-//     res.status(500).json({ error: 'Error al actualizar el alquiler.' });
-//   }
-// };
-
-
 exports.updateAlquiler = async (req, res) => {
   try {
     const { id } = req.params;
@@ -105,20 +73,6 @@ exports.updateAlquiler = async (req, res) => {
   }
 };
 
-
-// exports.deleteAlquiler = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const deleted = await Alquiler.destroy({ where: { id } });
-//     if (deleted) {
-//       res.status(200).json({ message: 'Alquiler eliminado' });
-//     } else {
-//       res.status(404).json({ error: 'Alquiler no encontrado.' });
-//     }
-//   } catch (error) {
-//     res.status(500).json({ error: 'Error al eliminar el alquiler.' });
-//   }
-// };
 
 exports.deleteAlquiler = async (req, res) => {
   try {
