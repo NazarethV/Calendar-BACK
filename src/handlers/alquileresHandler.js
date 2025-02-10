@@ -1,8 +1,8 @@
-const alquilerController = require('../controllers/alquilerController');
+const alquileresController = require('../controllers/alquilerController');
 
 exports.getAlquileresHandler = async (req, res) => {
   try {
-    const alquileres = await alquilerController.getAlquileres(req.user.id);
+    const alquileres = await alquileresController.getAlquileres(req.user.id);
     res.status(200).json(alquileres);
   } catch (error) {
     console.error('Error en getAlquileresHandler:', error);
@@ -13,7 +13,7 @@ exports.getAlquileresHandler = async (req, res) => {
 exports.getAlquilerByIdHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    const alquiler = await alquilerController.getAlquilerById(id, req.user.id);
+    const alquiler = await alquileresController.getAlquilerById(id, req.user.id);
     res.status(200).json(alquiler);
   } catch (error) {
     console.error('Error en getAlquilerByIdHandler:', error);
@@ -24,7 +24,7 @@ exports.getAlquilerByIdHandler = async (req, res) => {
 exports.createAlquilerHandler = async (req, res) => {
   try {
     const data = { ...req.body, userId: req.user.id };
-    const nuevoAlquiler = await alquilerController.createAlquiler(data);
+    const nuevoAlquiler = await alquileresController.createAlquiler(data);
     res.status(201).json(nuevoAlquiler);
   } catch (error) {
     console.error('Error en createAlquilerHandler:', error);
@@ -35,7 +35,7 @@ exports.createAlquilerHandler = async (req, res) => {
 exports.updateAlquilerHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedAlquiler = await alquilerController.updateAlquiler(id, req.user.id, req.body);
+    const updatedAlquiler = await alquileresController.updateAlquiler(id, req.user.id, req.body);
     res.status(200).json(updatedAlquiler);
   } catch (error) {
     console.error('Error en updateAlquilerHandler:', error);
@@ -46,7 +46,7 @@ exports.updateAlquilerHandler = async (req, res) => {
 exports.deleteAlquilerHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    await alquilerController.deleteAlquiler(id, req.user.id);
+    await alquileresController.deleteAlquiler(id, req.user.id);
     res.status(200).json({ message: 'Alquiler eliminado' });
   } catch (error) {
     console.error('Error en deleteAlquilerHandler:', error);
