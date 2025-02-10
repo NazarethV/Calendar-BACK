@@ -6,8 +6,6 @@ const bodyParser = require('body-parser');
 const alquilerRoutes = require('./routes/alquileres');
 const authRoutes = require('./routes/auth');
 const sequelize = require('./config/database');
-const User = require('./models/User');
-const Alquiler = require('./models/Alquiler');
 
 const app = express();
 
@@ -23,6 +21,8 @@ const loginLimiter = rateLimit({
   message: 'Demasiados intentos de inicio de sesión. Inténtalo más tarde.',
 });
 
+app.use('/api/v1/auth/login', loginLimiter);
+
 // Ruta raíz para confirmar que el backend está activo
 app.get('/', (req, res) => {
   res.send('Servidor backend en ejecución.');
@@ -31,14 +31,6 @@ app.get('/', (req, res) => {
 // Rutas de la API
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/rentals', alquilerRoutes); // Cambia la ruta base para que coincida con el frontend
-
-// //RELACIÓN ENTRE MODELOS
-// // Un usuario tiene muchos alquileres
-// User.hasMany(Alquiler, { foreignKey: 'userId' });
-
-// // Un alquiler pertenece a un usuario
-// Alquiler.belongsTo(User, { foreignKey: 'userId' });
-
 
 // Manejo global de errores (middleware al final de las rutas)
 app.use((err, req, res, next) => {
