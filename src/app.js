@@ -9,6 +9,7 @@ const Alquiler = require('./models/Alquiler');
 
 const app = express();
 
+//Middlewares globales
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -16,11 +17,12 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
   res.send('Servidor backend en ejecución.');
 });
-// Rutas
+
+// Rutas de la API
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/rentals', alquilerRoutes); // Cambia la ruta base para que coincida con el frontend
 
-//DEFINIR LA RELACIÓN ENTRE MODELOS
+//RELACIÓN ENTRE MODELOS
 // Un usuario tiene muchos alquileres
 User.hasMany(Alquiler, { foreignKey: 'userId' });
 
@@ -28,7 +30,19 @@ User.hasMany(Alquiler, { foreignKey: 'userId' });
 Alquiler.belongsTo(User, { foreignKey: 'userId' });
 
 
-// Conectar con la base de datos
+// Manejo global de errores (middleware al final de las rutas)
+app.use((err, req, res, next) => {
+  console.error('Error capturado:', err);
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || 'error';
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
+  });
+});
+
+
+// Conectar con la base de datos y arranque del servidor
 sequelize.sync({ alter: true }).then(() => {
   console.log('Base de datos sincronizada.');
   app.listen(8080, () => console.log('Servidor corriendo en el puerto 8080'));
