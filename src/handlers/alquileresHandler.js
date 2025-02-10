@@ -1,4 +1,4 @@
-const alquileresController = require('../controllers/alquilerController');
+const alquileresController = require('../controllers/alquileresController');
 
 exports.getAlquileresHandler = async (req, res) => {
   try {
