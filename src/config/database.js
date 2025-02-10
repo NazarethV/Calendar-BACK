@@ -26,7 +26,8 @@ fs.readdirSync(modelsPath)
   .filter(file => file.endsWith('.js'))
   .forEach(file => {
     const model = require(path.join(modelsPath, file))(sequelize);
-    models[model.name] = model;  // Guardar cada modelo en el objeto
+    console.log(`Modelo cargado: ${file}`);
+    models[model.name] = model;
   });
 
 // Ahora, debes ejecutar las asociaciones después de cargar los modelos
