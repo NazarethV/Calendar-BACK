@@ -11,11 +11,11 @@ const authenticateJWT = require('../middlewares/auth');
 
 const router = express.Router();
 
-router.get('/', authenticateJWT, getAlquileres);
-router.get('/:id', authenticateJWT, getAlquilerById); // Ruta nueva
-router.post('/', authenticateJWT, createAlquiler);
-router.put('/:id', authenticateJWT, updateAlquiler);
-router.delete('/:id', authenticateJWT, deleteAlquiler);
+router.get('/', authenticateJWT, getAlquileresHandler);
+router.get('/:id', authenticateJWT, getAlquilerByIdHandler); // Ruta nueva
+router.post('/', authenticateJWT, createAlquilerHandler);
+router.put('/:id', authenticateJWT, updateAlquilerHandler);
+router.delete('/:id', authenticateJWT, deleteAlquilerHandler);
 
 module.exports = router;
 
