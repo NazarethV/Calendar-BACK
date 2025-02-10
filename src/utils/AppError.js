@@ -1,3 +1,5 @@
+// Utilidades para Manejo de Errores Asíncronos y Errores Personalizados
+
 class AppError extends Error {
     constructor(message, statusCode) {
       super(message);
