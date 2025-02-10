@@ -57,5 +57,9 @@ const Alquiler = sequelize.define('Alquiler', {
   }
 });
 
+// Relación: Un alquiler pertenece a un usuario
+Alquiler.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE' });
+
+
 module.exports = Alquiler;
 

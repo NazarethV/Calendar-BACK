@@ -20,4 +20,7 @@ const User = sequelize.define('User', {
     timestamps: true,
 });
 
+// Relación: Un usuario tiene muchos alquileres
+User.hasMany(Alquiler, { foreignKey: 'userId', onDelete: 'CASCADE' });
+
 module.exports = User;
