@@ -1,11 +1,11 @@
 const express = require('express');
 const {
-  getAlquileres,
-  getAlquilerById,
-  createAlquiler,
-  updateAlquiler,
-  deleteAlquiler,
-} = require('../controllers/alquileresController');
+  getAlquileresHandler,
+  getAlquilerByIdHandler,
+  createAlquilerHandler,
+  updateAlquilerHandler,
+  deleteAlquilerHandler,
+} = require('../handlers/alquileresHandler');
 
 const authenticateJWT = require('../middlewares/auth');
 
