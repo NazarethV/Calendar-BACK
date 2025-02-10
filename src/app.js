@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 const alquilerRoutes = require('./routes/alquileres');
 const authRoutes = require('./routes/auth');
@@ -9,9 +11,17 @@ const Alquiler = require('./models/Alquiler');
 
 const app = express();
 
-//Middlewares globales
+//Middlewares globales y de seguridad
 app.use(cors());
+app.use(helmet()); // Protección contra vulnerabilidades comunes
 app.use(bodyParser.json());
+
+// Limitar intentos en /login (previene ataques de fuerza bruta)
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutos
+  max: 5, // Máximo 5 intentos por IP
+  message: 'Demasiados intentos de inicio de sesión. Inténtalo más tarde.',
+});
 
 // Ruta raíz para confirmar que el backend está activo
 app.get('/', (req, res) => {
