@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
+module.exports = (sequelize) => { 
 const Alquiler = sequelize.define('Alquiler', {
   
   tenantName: { type: DataTypes.STRING, allowNull: false }, // nombre_inquilino
@@ -58,8 +59,15 @@ const Alquiler = sequelize.define('Alquiler', {
 });
 
 // Relación: Un alquiler pertenece a un usuario
-Alquiler.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE' });
+//Alquiler.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE' });
 
 
-module.exports = Alquiler;
+// Relación: Un alquiler pertenece a un usuario
+Alquiler.associate = (models) => {
+  Alquiler.belongsTo(models.User, { foreignKey: 'userId', onDelete: 'CASCADE' });
+};
+
+return Alquiler;
+
+};
 

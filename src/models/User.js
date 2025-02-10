@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
+module.exports = (sequelize) => { 
 const User = sequelize.define('User', {
     username: {
         type: DataTypes.STRING,
@@ -21,6 +22,13 @@ const User = sequelize.define('User', {
 });
 
 // Relación: Un usuario tiene muchos alquileres
-User.hasMany(Alquiler, { foreignKey: 'userId', onDelete: 'CASCADE' });
+//User.hasMany(Alquiler, { foreignKey: 'userId', onDelete: 'CASCADE' });
 
-module.exports = User;
+// Relación: Un usuario tiene muchos alquileres
+User.associate = (models) => {
+    User.hasMany(models.Alquiler, { foreignKey: 'userId', onDelete: 'CASCADE' });
+  };
+
+return User;
+
+};

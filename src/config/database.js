@@ -20,10 +20,21 @@ const sequelize = new Sequelize(
 );
 
 // Cargar los modelos dinámicamente
+const models = {};  // Crear un objeto para almacenar los modelos
 const modelsPath = path.join(__dirname, '../models');
 fs.readdirSync(modelsPath)
   .filter(file => file.endsWith('.js'))
-  .forEach(file => require(path.join(modelsPath, file))(sequelize));
+  .forEach(file => {
+    const model = require(path.join(modelsPath, file))(sequelize);
+    models[model.name] = model;  // Guardar cada modelo en el objeto
+  });
+
+// Ahora, debes ejecutar las asociaciones después de cargar los modelos
+Object.keys(models).forEach(modelName => {
+  if (models[modelName].associate) {
+    models[modelName].associate(models);
+  }
+});
 
 sequelize.authenticate()
   .then(() => console.log('Conexión exitosa con la base de datos.'))
