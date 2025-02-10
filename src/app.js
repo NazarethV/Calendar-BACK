@@ -32,12 +32,12 @@ app.get('/', (req, res) => {
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/rentals', alquilerRoutes); // Cambia la ruta base para que coincida con el frontend
 
-//RELACIÓN ENTRE MODELOS
-// Un usuario tiene muchos alquileres
-User.hasMany(Alquiler, { foreignKey: 'userId' });
+// //RELACIÓN ENTRE MODELOS
+// // Un usuario tiene muchos alquileres
+// User.hasMany(Alquiler, { foreignKey: 'userId' });
 
-// Un alquiler pertenece a un usuario
-Alquiler.belongsTo(User, { foreignKey: 'userId' });
+// // Un alquiler pertenece a un usuario
+// Alquiler.belongsTo(User, { foreignKey: 'userId' });
 
 
 // Manejo global de errores (middleware al final de las rutas)

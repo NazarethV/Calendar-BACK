@@ -36,6 +36,12 @@ const sequelize = new Sequelize(
   }
 );
 
+// Cargar los modelos dinámicamente
+const modelsPath = path.join(__dirname, '../models');
+fs.readdirSync(modelsPath)
+  .filter(file => file.endsWith('.js'))
+  .forEach(file => require(path.join(modelsPath, file))(sequelize));
+
 sequelize.authenticate()
   .then(() => console.log('Conexión exitosa con la base de datos.'))
   .catch(err => console.error('Error al conectar a la base de datos:', err));
