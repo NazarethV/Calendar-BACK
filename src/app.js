@@ -5,7 +5,7 @@ const rateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 const alquilerRoutes = require('./routes/alquileres');
 const authRoutes = require('./routes/auth');
-const sequelize = require('./config/database');
+const {sequelize} = require('./config/database');
 
 const app = express();
 

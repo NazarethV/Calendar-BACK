@@ -26,14 +26,17 @@ fs.readdirSync(modelsPath)
   .filter(file => file.endsWith('.js'))
   .forEach(file => {
     const model = require(path.join(modelsPath, file))(sequelize);
-    console.log(`Modelo cargado: ${file}`);
     models[model.name] = model;
   });
 //
 // Ahora, debes ejecutar las asociaciones después de cargar los modelos
-Object.keys(models).forEach(modelName => {
-  if (models[modelName].associate) {
-    models[modelName].associate(models);
+// Object.keys(models).forEach(modelName => {
+//   if (models[modelName].associate) {
+//     models[modelName].associate(models);
+//   }
+Object.values(models).forEach(model => {
+  if (model.associate) {
+    model.associate(models);
   }
 });
 
@@ -41,5 +44,5 @@ sequelize.authenticate()
   .then(() => console.log('Conexión exitosa con la base de datos.'))
   .catch(err => console.error('Error al conectar a la base de datos:', err));
 
-module.exports = sequelize;
+module.exports = {sequelize, models};
 
