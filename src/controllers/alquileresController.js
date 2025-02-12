@@ -1,4 +1,6 @@
-const Alquiler = require('../models/Alquiler');
+//const Alquiler = require('../models/Alquiler');
+const { models } = require('../config/database');
+const Alquiler = models.Alquiler;
 
 exports.getAlquileres = async (userId) => {
   return await Alquiler.findAll({ where: { userId } });
