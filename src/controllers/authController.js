@@ -35,7 +35,7 @@ exports.login = async (username, password) => {
   
   const validPassword = await bcrypt.compare(password, user.password);
   if (!validPassword) {
-    const error = new Error('Credenciales incorrectas.');
+    const error = new Error('Datos incorrectos.');
     error.status = 401;
     throw error;
   }
