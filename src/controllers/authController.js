@@ -28,7 +28,7 @@ exports.register = async (username, email, password) => {
 exports.login = async (username, password) => {
   const user = await User.findOne({ where: { username } });
   if (!user) {
-    const error = new Error('Credenciales incorrectas.');
+    const error = new Error('Datos incorrectos.');
     error.status = 401;
     throw error;
   }
